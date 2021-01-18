@@ -11,6 +11,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->publishes([
             self::CONFIG_PATH => config_path('horizon-stats.php'),
         ], 'config');
+
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 
     public function register()
@@ -19,9 +21,5 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             self::CONFIG_PATH,
             'horizon-stats'
         );
-
-        $this->app->bind('horizon-stats', function () {
-            return new HorizonStats();
-        });
     }
 }
