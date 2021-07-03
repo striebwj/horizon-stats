@@ -22,6 +22,7 @@ class HorizonStatsTest extends TestCase
 
     public function testExample()
     {
+        // TODO: Remove
         $this->assertEquals(1, 1);
     }
 }
