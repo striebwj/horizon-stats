@@ -1,6 +1,7 @@
 # Horizon Stats
 
-[![GitHub Workflow Status](https://github.com/striebwj/horizon-stats/workflows/Run%20tests/badge.svg)](https://github.com/striebwj/horizon-stats/actions)
+[![Run tests](https://github.com/striebwj/horizon-stats/actions/workflows/default.yml/badge.svg)](https://github.com/striebwj/horizon-stats/actions/workflows/default.yml)
+[![Format (PHP)](https://github.com/striebwj/horizon-stats/actions/workflows/FormatPHP.yml/badge.svg)](https://github.com/striebwj/horizon-stats/actions/workflows/FormatPHP.yml)
 
 [![Packagist](https://img.shields.io/packagist/v/striebwj/horizon-stats.svg)](https://packagist.org/packages/striebwj/horizon-stats)
 [![Packagist](https://poser.pugx.org/striebwj/horizon-stats/d/total.svg)](https://packagist.org/packages/striebwj/horizon-stats)
