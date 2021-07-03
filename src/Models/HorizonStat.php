@@ -40,7 +40,5 @@ class HorizonStat extends Model
     public function queueStats(): HasMany
     {
         return $this->hasMany(HorizonQueueStat::class);
-
     }
-
 }

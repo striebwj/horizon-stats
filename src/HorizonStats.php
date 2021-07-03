@@ -3,7 +3,6 @@
 namespace striebwj\HorizonStats;
 
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Support\Collection;
 use Laravel\Horizon\Repositories\RedisMetricsRepository;
 use striebwj\HorizonStats\Models\HorizonJobStat;
 use striebwj\HorizonStats\Models\HorizonStat;
@@ -22,7 +21,6 @@ class HorizonStats
     {
         $this->horizonMetrics = app(RedisMetricsRepository::class);
     }
-
 
     /**
      * Store the snapshot data.
@@ -65,6 +63,4 @@ class HorizonStats
             $model->save();
         });
     }
-
 }
-

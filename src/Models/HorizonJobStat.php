@@ -14,7 +14,7 @@ class HorizonJobStat extends Model
     {
         parent::__construct();
 
-        $this->setTable(config('horizon-stats.table_name') . '_jobs');
+        $this->setTable(config('horizon-stats.table_name').'_jobs');
     }
 
     protected $fillable = [
@@ -22,5 +22,4 @@ class HorizonJobStat extends Model
         self::DB_THROUGHPUT,
         self::DB_RUNTIME,
     ];
-
 }

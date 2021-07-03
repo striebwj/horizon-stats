@@ -10,7 +10,7 @@ class CreateHorizonStatsTable extends Migration
 
     public function __construct()
     {
-        $this->tableName = config('horizon-stats.table_name') . '_queues';
+        $this->tableName = config('horizon-stats.table_name').'_queues';
     }
 
     /**

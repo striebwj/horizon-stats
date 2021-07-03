@@ -14,7 +14,7 @@ class HorizonQueueStat extends Model
     {
         parent::__construct();
 
-        $this->setTable(config('horizon-stats.table_name') . '_queues');
+        $this->setTable(config('horizon-stats.table_name').'_queues');
     }
 
     protected $fillable = [
@@ -22,7 +22,4 @@ class HorizonQueueStat extends Model
         self::DB_THROUGHPUT,
         self::DB_RUNTIME,
     ];
-
-
-
 }
