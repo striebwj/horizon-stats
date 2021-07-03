@@ -9,8 +9,8 @@
   "type": "library",
   "authors": [
     {
-      "name": "",
-      "email": ""
+      "name": "Wade Striebel",
+      "email": "wade@striebel.ca"
     }
   ],
   "require": {
