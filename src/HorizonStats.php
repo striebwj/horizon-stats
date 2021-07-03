@@ -2,6 +2,8 @@
 
 namespace striebwj\HorizonStats;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Collection;
 use Laravel\Horizon\Repositories\RedisMetricsRepository;
 use striebwj\HorizonStats\Models\HorizonJobStat;
 use striebwj\HorizonStats\Models\HorizonStat;
@@ -9,7 +11,7 @@ use striebwj\HorizonStats\Models\HorizonStat;
 class HorizonStats
 {
     /**
-     * @var \Illuminate\Contracts\Foundation\Application|mixed
+     * @var Application|mixed
      */
     private $horizonMetrics;
 
@@ -21,20 +23,24 @@ class HorizonStats
         $this->horizonMetrics = app(RedisMetricsRepository::class);
     }
 
-    public function storeSnapshotData()
+
+    /**
+     * Store the snapshot data.
+     *
+     * @return void
+     */
+    public function storeSnapshotData(): void
     {
-        $snapshot = $this->storeJobStats();
-
-
+        $this->storeJobStats();
+        $this->storeOverallStats();
     }
-
 
     /**
      * Store the overall stats since the last snapshot.
      *
-     * @return HorizonStat $model
+     * @return void
      */
-    public function storeOverallStats()
+    private function storeOverallStats(): void
     {
         $model = new HorizonStat();
 
@@ -42,13 +48,16 @@ class HorizonStats
         $model->{HorizonStat::DB_THROUGHPUT} = $this->horizonMetrics->throughput();
 
         $model->save();
-
-        return $model;
     }
 
-    public function storeJobStats()
+    /**
+     * Store stats for each job since last snapshot.
+     *
+     * @return void
+     */
+    private function storeJobStats(): void
     {
-        return collect($this->horizonMetrics->measuredJobs())->each(function ($job)  {
+        collect($this->horizonMetrics->measuredJobs())->each(function ($job) {
             $model = new HorizonJobStat();
             $model->{HorizonJobStat::DB_NAME} = $job;
             $model->{HorizonJobStat::DB_THROUGHPUT} = $this->horizonMetrics->throughputForJob($job);

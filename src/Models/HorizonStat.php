@@ -3,11 +3,12 @@
 namespace striebwj\HorizonStats\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class HorizonStat extends Model
 {
-    const DB_JOBS_PER_MINUTE = 'jobs_per_minute';
-    const DB_THROUGHPUT = 'throughput';
+    public const DB_JOBS_PER_MINUTE = 'jobs_per_minute';
+    public const DB_THROUGHPUT = 'throughput';
 
     public function __construct()
     {
@@ -17,18 +18,16 @@ class HorizonStat extends Model
     }
 
     protected $fillable = [
-        self::DB_JOBS_PER_MINUTE, self::DB_THROUGHPUT
+        self::DB_JOBS_PER_MINUTE,
+        self::DB_THROUGHPUT
     ];
-
-
-    // RELEATIONSHIPS
 
     /**
      * The jobs stats for this snapshot.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function jobStats()
+    public function jobStats(): HasMany
     {
         return $this->hasMany(HorizonJobStat::class);
     }
@@ -36,9 +35,9 @@ class HorizonStat extends Model
     /**
      * The queue stats for this snapshot.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function queueStats()
+    public function queueStats(): HasMany
     {
         return $this->hasMany(HorizonQueueStat::class);
 
