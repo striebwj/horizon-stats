@@ -27,12 +27,12 @@ Update the `horizon-stats.php` config file to change the database names. Default
 ## Usage
 
 Once migrations are run, add the `horizon-stats:store` command to your `App\Console\Kernel.php` with the same time as
-your Horizon Snapshot command. It should look something like this:
+your Horizon Snapshot command. **Be sure to add it before the snapshot**. It should look something like this:
 
 ```phpt
 // Horizon Tasks
+$schedule->command('horizon-stats:store')->everyFiveMinutes(); // Before the snapshot
 $schedule->command('horizon:snapshot')->everyFiveMinutes();
-$schedule->command('horizon-stats:store')->everyFiveMinutes();
 ```
 
 ## Security
