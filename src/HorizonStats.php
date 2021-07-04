@@ -71,7 +71,6 @@ class HorizonStats
         });
     }
 
-
     /**
      * Store stats for each queue since last snapshot.
      *
