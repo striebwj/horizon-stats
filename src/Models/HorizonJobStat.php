@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class HorizonJobStat extends Model
 {
+    public const DB_HORIZON_STAT_ID = 'horizon_stats_id';
     public const DB_NAME = 'name';
     public const DB_THROUGHPUT = 'throughput';
     public const DB_RUNTIME = 'runtime';
@@ -18,6 +19,7 @@ class HorizonJobStat extends Model
     }
 
     protected $fillable = [
+        self::DB_HORIZON_STAT_ID,
         self::DB_NAME,
         self::DB_THROUGHPUT,
         self::DB_RUNTIME,

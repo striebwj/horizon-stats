@@ -27,36 +27,41 @@ class HorizonStats
      *
      * @return void
      */
-    public function storeSnapshotData(): void
+    public static function storeSnapshotData(): void
     {
-        $this->storeJobStats();
-        $this->storeOverallStats();
+        $self = new self();
+        $stat = $self->storeOverallStats();
+
+        $self->storeJobStats($stat);
     }
 
     /**
      * Store the overall stats since the last snapshot.
      *
-     * @return void
+     * @return HorizonStat
      */
-    private function storeOverallStats(): void
+    private function storeOverallStats(): HorizonStat
     {
         $model = new HorizonStat();
 
         $model->{HorizonStat::DB_JOBS_PER_MINUTE} = $this->horizonMetrics->jobsProcessedPerMinute();
         $model->{HorizonStat::DB_THROUGHPUT} = $this->horizonMetrics->throughput();
-
         $model->save();
+
+        return $model;
     }
 
     /**
      * Store stats for each job since last snapshot.
      *
+     * @param $stat
      * @return void
      */
-    private function storeJobStats(): void
+    private function storeJobStats($stat): void
     {
-        collect($this->horizonMetrics->measuredJobs())->each(function ($job) {
+        collect($this->horizonMetrics->measuredJobs())->each(function ($job) use ($stat) {
             $model = new HorizonJobStat();
+            $model->{HorizonJobStat::DB_HORIZON_STAT_ID} = $stat->id;
             $model->{HorizonJobStat::DB_NAME} = $job;
             $model->{HorizonJobStat::DB_THROUGHPUT} = $this->horizonMetrics->throughputForJob($job);
             $model->{HorizonJobStat::DB_RUNTIME} = $this->horizonMetrics->runtimeForJob($job);
