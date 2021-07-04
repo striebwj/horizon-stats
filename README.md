@@ -7,7 +7,10 @@
 [![Packagist](https://poser.pugx.org/striebwj/horizon-stats/d/total.svg)](https://packagist.org/packages/striebwj/horizon-stats)
 [![Packagist](https://img.shields.io/packagist/l/striebwj/horizon-stats.svg)](https://packagist.org/packages/striebwj/horizon-stats)
 
-Package description: CHANGE ME
+Store long-term stats on the health of your Horizon Queues.
+
+This package takes the Horizon snapshot data and stores it in the database, with easy to access models, so you can
+track your queue health over time.
 
 ## Installation
 
@@ -34,6 +37,11 @@ your Horizon Snapshot command. **Be sure to add it before the snapshot**. It sho
 $schedule->command('horizon-stats:store')->everyFiveMinutes(); // Before the snapshot
 $schedule->command('horizon:snapshot')->everyFiveMinutes();
 ```
+
+## To-do List
+- [ ] Add tests
+- [ ] Allow pushing storing in DB to a queue
+- [ ] Add pruning?
 
 ## Security
 
