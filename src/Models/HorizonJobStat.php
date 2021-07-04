@@ -6,20 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class HorizonJobStat extends Model
 {
-
-    const DB_NAME = 'name';
-    const DB_THROUGHPUT = 'throughput';
-    const DB_RUNTIME = 'runtime';
+    public const DB_HORIZON_STAT_ID = 'horizon_stats_id';
+    public const DB_NAME = 'name';
+    public const DB_THROUGHPUT = 'throughput';
+    public const DB_RUNTIME = 'runtime';
 
     public function __construct()
     {
         parent::__construct();
 
-        $this->setTable(config('horizon-stats.table_name') . '_jobs');
+        $this->setTable(config('horizon-stats.table_name').'_jobs');
     }
 
     protected $fillable = [
-        self::DB_NAME, self::DB_THROUGHPUT, self::DB_RUNTIME,
+        self::DB_HORIZON_STAT_ID,
+        self::DB_NAME,
+        self::DB_THROUGHPUT,
+        self::DB_RUNTIME,
     ];
-
 }

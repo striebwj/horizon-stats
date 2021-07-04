@@ -22,9 +22,18 @@ composer require striebwj/horizon-stats
 php artisan vendor:publish --provider="striebwj\HorizonStats\ServiceProvider"
 ```
 
+Update the `horizon-stats.php` config file to change the database names. Default is `horizon_stats`.
+
 ## Usage
 
-CHANGE ME
+Once migrations are run, add the `horizon-stats:store` command to your `App\Console\Kernel.php` with the same time as
+your Horizon Snapshot command. It should look something like this:
+
+```phpt
+// Horizon Tasks
+$schedule->command('horizon:snapshot')->everyFiveMinutes();
+$schedule->command('horizon-stats:store')->everyFiveMinutes();
+```
 
 ## Security
 

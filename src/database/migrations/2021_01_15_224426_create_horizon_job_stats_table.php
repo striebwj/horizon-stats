@@ -10,9 +10,8 @@ class CreateHorizonJobStatsTable extends Migration
 
     public function __construct()
     {
-        $this->tableName = config('horizon-stats.table_name') . '_jobs';
+        $this->tableName = config('horizon-stats.table_name').'_jobs';
     }
-
 
     /**
      * Run the migrations.
